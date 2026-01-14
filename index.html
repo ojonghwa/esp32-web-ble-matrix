@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>PixelArt WebBLE</title>
+</head>
+<body>
+    <div class="topnav">
+        <h1>ESP32 Web BLE - Pixel Art</h1>
+    </div>
+
+    <div class="content">
+        <div class="card-grid">
+            <div class="card">
+                <p>
+                    <button id="connectBleButton" class="connectButton"> Connect to BLE Device</button>
+                    <button id="disconnectBleButton" class="disconnectButton"> Disconnect BLE Device</button>
+                </p>
+                <p class="gray-label">BLE state: <strong><span id="bleState" style="color:#d13a30;">Disconnected</span></strong></p>
+            </div>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+
+            <button class="btn">Reset</button>
+            <input type="color" value="#00eeff" class="color">
+            <input type="number" value="8" class="size">
+          </div>
+       </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="container">
+               <!-- Here we will add divs representing our pixels -->
+            </div>
+          </div>
+       </div>
+    </div>
+
+<script src="pixelart.js"></script>
+</body>
+</html>
