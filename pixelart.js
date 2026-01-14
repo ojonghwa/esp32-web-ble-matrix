@@ -40,7 +40,7 @@ function populate(size) {
                     });
             } else {
                 console.error("Bluetooth is not connected. Cannot write to characteristic.");
-                //window.alert("Bluetooth is not connected. Cannot write to characteristic. \n Connect to BLE first!")
+                window.alert("Bluetooth is not connected. Cannot write to characteristic. \n Connect to BLE first!")
             }
         })
 
@@ -67,7 +67,7 @@ function populate(size) {
                     });
             } else {
                 console.error("Bluetooth is not connected. Cannot write to characteristic.")
-                //window.alert("Bluetooth is not connected. Cannot write to characteristic. \n Connect to BLE first!")
+                window.alert("Bluetooth is not connected. Cannot write to characteristic. \n Connect to BLE first!")
             }
         })
 
@@ -85,6 +85,22 @@ window.addEventListener("mouseup", function () {
 function reset() {
     container.innerHTML = ''
     populate(size)
+
+	if (bleServer && bleServer.connected) {
+		bleServiceFound.getCharacteristic(ledCharacteristic)
+		.then(characteristic => {
+			console.log("Found the LED characteristic: ", characteristic.uuid);
+
+			const data = new Uint8Array([255, 0, 0, 0]);  //reset clear
+			return characteristic.writeValueWithResponse(data);
+		})
+		.catch(error => {
+			console.error("Error writing to the LED characteristic: ", error);
+		});
+	} else {
+		console.error("Bluetooth is not connected. Cannot write to characteristic.")
+		window.alert("Bluetooth is not connected. Cannot write to characteristic. \n Connect to BLE first!")
+	}
 }
 
 resetBtn.addEventListener('click', reset)
