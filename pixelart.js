@@ -18,12 +18,11 @@ function populate(size) {
 
         div.addEventListener('mouseover', function (event) {
             if (!draw) return;
-            div.style.backgroundColor = color.value;  // #00eeff
+            
             const divId = event.target.id;
             const r = parseInt(color.value.slice(1, 3), 16);
             const g = parseInt(color.value.slice(3, 5), 16);
             const b = parseInt(color.value.slice(5, 7), 16);
-            //alert("id:R,G,B: " + divId + ": " + r + "," + g + "," + b);
 
             // Write to the ESP32 LED Characteristic
             //writeOnCharacteristic(divId,r,g,b);
@@ -31,6 +30,7 @@ function populate(size) {
                 bleServiceFound.getCharacteristic(ledCharacteristic)
                     .then(characteristic => {
                         console.log("Found the LED characteristic: ", characteristic.uuid);
+						div.style.backgroundColor = color.value;  // #00eeff
 
                         const data = new Uint8Array([divId, r, g, b]);  //id,R,G,B
                         return characteristic.writeValueWithResponse(data);
@@ -45,12 +45,10 @@ function populate(size) {
         })
 
         div.addEventListener('mousedown', function (event) {
-            div.style.backgroundColor = color.value;
             const divId = event.target.id;
             const r = parseInt(color.value.slice(1, 3), 16);
             const g = parseInt(color.value.slice(3, 5), 16);
             const b = parseInt(color.value.slice(5, 7), 16);
-            //alert("id:R,G,B: " + divId + ": " + r + "," + g + "," + b);
 
             // Write to the ESP32 LED Characteristic
             //writeOnCharacteristic(divId,r,g,b);
@@ -58,6 +56,7 @@ function populate(size) {
                 bleServiceFound.getCharacteristic(ledCharacteristic)
                     .then(characteristic => {
                         console.log("Found the LED characteristic: ", characteristic.uuid);
+						div.style.backgroundColor = color.value;  // #00eeff
 
                         const data = new Uint8Array([divId, r, g, b]);  //id,R,G,B
                         return characteristic.writeValueWithResponse(data);
@@ -215,3 +214,4 @@ function disconnectDevice() {
         window.alert("Bluetooth is not connected.")
     }
 }
+
