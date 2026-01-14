@@ -72,8 +72,8 @@ input{
 }
 .container{
     --size: 4;
-    height: 400px;
-    width: 400px;
+    height: 350px;
+    width: 350px;
     display: grid;
     grid-template-columns: repeat(var(--size), 1fr);
     grid-template-rows: repeat(var(--size), 1fr);
@@ -84,3 +84,4 @@ input{
     background-color: rgb(61, 61, 61);
     border-radius: 2px;
 }
+
